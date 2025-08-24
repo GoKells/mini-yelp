@@ -1,9 +1,9 @@
 ### **Product Requirements Document: "Mini Yelp"**
 
 **Version:** 1.0
-**Date:** October 26, 2023
-**Author:** [Product Manager Name]
-**Status:** Draft
+**Date:** August 24, 2025
+**Author:** Kelly Mahlangu
+**Status:** Final
 
 ---
 
