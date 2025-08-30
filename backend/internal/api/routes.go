@@ -1,9 +1,7 @@
 package api
 
 import (
-	"backend/internal/handlers"
 
-	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
@@ -20,11 +18,4 @@ func (a *FiberApi) RegisterFiberRoutes() {
 	auth := a.Group("/auth")
 	a.RegisterAuthRoutes(auth)
 
-}
-
-func (a *FiberApi) RegisterAuthRoutes(router fiber.Router) {
-	router.Post("/signup", handlers.SignUp)
-	router.Post("/login", handlers.Login)
-	router.Delete("/logout/:id", handlers.Logout)
-	router.Delete("/verify/:token", handlers.ConsumeMagicLink)
 }
