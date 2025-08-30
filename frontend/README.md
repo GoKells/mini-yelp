@@ -1,360 +1,152 @@
-# Frontend Product Requirements Document (PRD): Café Management System
+# Project Nomad - Frontend
 
-## Document Control
-- **Version:** 1.0
-- **Status:** Active
-- **Last Updated:** October 26, 2023
-- **Authors:** Frontend Team
-- **Stakeholders:** UX Team, Backend Team, Café Management
+This repository contains the frontend application for **Project Nomad**, a modern, scalable online reviews platform similar to Yelp. It is built to provide a fast, responsive, and engaging user experience for discovering and reviewing businesses.
 
----
+## 🚀 Tech Stack
 
-## 1. Overview
+- **Framework:** [React 18](https://reactjs.org/) with Functional Components & Hooks
+- **Build Tool:** [Vite](https://vitejs.dev/) (for fast development and builds)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **HTTP Client:** [Axios](https://axios-http.com/)
+- **State Management:** [TanStack Query (React Query)](https://tanstack.com/query/latest) for server state & [Zustand](https://github.com/pmndrs/zustand) for app state
+- **Routing:** [React Router v6](https://reactrouter.com/)
+- **Form Handling:** [React Hook Form](https://react-hook-form.com/)
+- **Testing:** [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- **Linting & Formatting:** [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
 
-The Café Management System frontend is a React-based application that provides an intuitive interface for café staff and managers to manage orders, menus, inventory, and customer relationships. It interfaces with a Go backend API to deliver real-time functionality and seamless user experiences.
-
----
-
-## 2. Technical Stack
-
-- **Framework:** React 18 with TypeScript
-- **Meta-Framework:** Next.js 14 (App Router)
-- **Styling:** Tailwind CSS + CSS Modules
-- **State Management:** React Query (TanStack Query) + Zustand
-- **API Client:** Axios
-- **Real-time:** Socket.io Client
-- **Testing:** Jest + React Testing Library + Cypress
-- **Form Handling:** React Hook Form + Zod validation
-- **UI Components:** Headless UI + Custom components
-- **Build Tool:** Vite (for development) + Next.js build system
-
----
-
-## 3. Core Objectives
-
-1. **Performance**: Sub-2-second page loads, 60fps animations
-2. **Usability**: Intuitive interface requiring minimal training
-3. **Reliability**: Graceful error handling and offline capabilities
-4. **Maintainability**: Clean code architecture with comprehensive testing
-5. **Accessibility**: WCAG 2.1 AA compliance
-
----
-
-## 4. Feature Requirements
-
-### 4.1. Must-Have (MVP)
-
-#### POS Interface
-- Order creation with item modifiers
-- Table layout for dine-in orders
-- Real-time order status updates
-- Payment processing interface
-- Receipt generation
-
-#### Menu Management
-- CRUD operations for menu items
-- Category management
-- Price and inventory updates
-- Image upload for menu items
-
-#### Authentication & Authorization
-- Role-based access (Admin, Manager, Staff)
-- Session management
-- Protected routes
-
-### 4.2. Should-Have (Phase 2)
-
-#### Inventory Management
-- Stock level indicators
-- Low-stock alerts
-- Purchase order creation
-
-#### Reporting Dashboard
-- Sales analytics
-- Popular items reporting
-- Shift reports
-
-#### Customer Management
-- Loyalty program interface
-- Customer profiles
-- Order history
-
-### 4.3. Nice-to-Have (Future)
-
-#### Mobile Responsiveness
-- Touch-friendly POS interface
-- Mobile-optimized views
-
-#### Real-time Collaboration
-- Staff messaging system
-- Order assignment tracking
-
-#### Theme Customization
-- Brand-specific theming
-- Customizable UI components
-
----
-
-## 5. User Stories & Acceptance Criteria
-
-### 5.1. Barista User Stories
-
-**As a barista, I want to:**
-- View new orders instantly with sound notification
-- Update order status with one click
-- See modifier instructions clearly
-- Access common items quickly
-
-**Acceptance Criteria:**
-- [ ] New orders appear within 2 seconds
-- [ ] Status changes persist immediately
-- [ ] Modifiers are displayed prominently
-- [ ] Favorite items can be pinned for quick access
-
-### 5.2. Manager User Stories
-
-**As a manager, I want to:**
-- View daily sales reports
-- Update menu items and prices
-- Manage staff permissions
-- View inventory levels
-
-**Acceptance Criteria:**
-- [ ] Sales reports load within 3 seconds
-- [ ] Menu updates propagate immediately
-- [ ] Permission changes take effect immediately
-- [ ] Inventory levels update in real-time
-
----
-
-## 6. Technical Requirements
-
-### 6.1. Performance
-- Largest Contentful Paint (LCP): < 2.5s
-- First Input Delay (FID): < 100ms
-- Cumulative Layout Shift (CLS): < 0.1
-- Bundle size: < 500KB initial load
-
-### 6.2. Browser Support
-- Chrome (last 2 versions)
-- Firefox (last 2 versions)
-- Safari (last 2 versions)
-- Mobile Safari (iOS 13+)
-
-### 6.3. Accessibility
-- WCAG 2.1 AA compliance
-- Keyboard navigation support
-- Screen reader compatibility
-- Color contrast ratio > 4.5:1
-
-### 6.4. Responsive Breakpoints
-- Mobile: < 768px
-- Tablet: 768px - 1024px
-- Desktop: > 1024px
-
----
-
-## 7. Component Architecture
+## 📁 Project Structure
 
 ```
 src/
-├── components/
-│   ├── ui/          # Basic UI components (Button, Input, etc.)
-│   ├── layout/      # Layout components (Header, Sidebar, etc.)
-│   ├── pos/         # POS-specific components
-│   ├── menu/        # Menu management components
-│   └── shared/      # Shared utility components
-├── hooks/           # Custom React hooks
-├── services/        # API service layer
-├── stores/          # Zustand state stores
-├── types/           # TypeScript type definitions
-├── utils/           # Utility functions
-├── constants/       # Application constants
-└── styles/          # Global styles and Tailwind config
+├── components/          # Reusable UI components (Button, Card, Modal)
+│   ├── ui/             # Basic unstyled components
+│   ├── business/       # Business-specific components (BusinessCard, ReviewList)
+│   └── common/         # Other shared components (Header, Footer, SearchBar)
+├── pages/              # Top-level page components (Home, Business, Profile)
+├── hooks/              # Custom React hooks (useAuth, useSearch)
+├── services/           # API service layer (api-client.js, businessService.js)
+├── stores/             # Zustand state stores (authStore.ts, uiStore.ts)
+├── types/              # TypeScript type definitions
+├── utils/              # Helper functions and utilities
+├── assets/             # Static assets (images, icons)
+└── __tests__/          # Directory for test files
 ```
 
----
+## 🛠️ Prerequisites
 
-## 8. State Management Strategy
+- **Node.js** (v18 or higher)
+- **npm** or **yarn** or **pnpm**
+- The [Project Nomad Backend](https://github.com/your-org/project-nomad-backend) must be running locally or accessible via its API URL.
 
-### 8.1. Server State (React Query)
-- API data caching
-- Background updates
-- Pagination and infinite queries
-- Optimistic updates
+## ⚡ Getting Started
 
-### 8.2. Client State (Zustand)
-- UI state (modals, forms)
-- Local preferences
-- Real-time ephemeral state
+1.  **Clone the repository and navigate to the frontend folder:**
+    ```bash
+    git clone https://github.com/your-org/project-nomad.git
+    cd project-nomad/frontend
+    ```
 
-### 8.3. Form State (React Hook Form)
-- Form validation with Zod
-- Efficient re-renders
-- Dirty state tracking
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    yarn
+    # or
+    pnpm install
+    # or
+    bun install
+    ```
 
----
+3.  **Environment Setup:**
+    Copy the example environment file and update the variables with your local configuration.
+    ```bash
+    cp .env.example .env.local
+    ```
+    Edit `.env.local`:
+    ```env
+    VITE_APP_NAME="Project Nomad"
+    VITE_API_BASE_URL=http://localhost:3001/api/v1
+    VITE_ES_PROXY_URL=http://localhost:3001/api/v1/search/proxy # Optional, for direct search dev
+    ```
 
-## 9. API Integration
+4.  **Start the development server:**
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    # or
+    pnpm dev
+    # or
+    bun dev
+    ```
+    The app will open on `http://localhost:5173`.
 
-### 9.1. API Client Configuration
-- Base URL configuration
-- Request/response interceptors
-- Error handling
-- Authentication token management
+## 🤝 Connecting to the Backend
 
-### 9.2. Real-time Events
-- WebSocket connection management
-- Event subscription system
-- Connection state handling
+This frontend is designed to work with the backend API described in the main PRD. Key endpoints include:
 
-### 9.3. Data Fetching Patterns
-- Stale-while-revalidate strategy
-- Background synchronization
-- Offline queue system
+- `GET /api/v1/businesses` - List & search businesses (via Elasticsearch)
+- `GET /api/v1/businesses/:id` - Get a single business and its reviews
+- `POST /api/v1/reviews` - Create a new review
+- `POST /api/v1/upload` - Upload an image to S3
 
----
+Ensure your backend is running on the port specified in your `VITE_API_BASE_URL` (e.g., `http://localhost:3001`).
 
-## 10. Testing Strategy
+## 📜 Available Scripts
 
-### 10.1. Unit Tests (Jest + React Testing Library)
-- Component rendering tests
-- Hook testing
-- Utility function tests
+- `npm run dev` - Starts the development server with HMR.
+- `npm run build` - Builds the app for production to the `dist` folder.
+- `npm run preview` - Previews the production build locally.
+- `npm run test` - Runs the test suite with Vitest.
+- `npm run test:ui` - Runs the test suite in UI mode.
+- `npm run lint` - Runs ESLint to catch linting errors.
+- `npm run type-check` - Runs the TypeScript compiler to check for type errors.
 
-### 10.2. Integration Tests (React Testing Library)
-- User interaction tests
-- Form submission tests
-- API integration tests
+## 🧪 Testing
 
-### 10.3. E2E Tests (Cypress)
-- Critical user journey tests
-- Cross-browser testing
-- Performance testing
+This project uses Vitest and React Testing Library for unit and component testing.
 
-### 10.4. Test Coverage Targets
-- Statements: 80%+
-- Branches: 70%+
-- Functions: 80%+
-- Lines: 80%+
+- Write tests in files named `*.test.ts` or `*.test.tsx` alongside your code or in the `__tests__` directory.
+- Run `npm run test` to execute the test suite.
 
----
+Example test:
+```jsx
+import { describe, it, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import BusinessCard from '../components/business/BusinessCard';
 
-## 11. Development Workflow
+describe('BusinessCard', () => {
+  it('renders the business name and rating', () => {
+    const mockBusiness = { name: 'Test Cafe', average_rating: 4.5 };
+    render(<BusinessCard business={mockBusiness} />);
+    expect(screen.getByText('Test Cafe')).toBeInTheDocument();
+    expect(screen.getByText('4.5')).toBeInTheDocument();
+  });
+});
+```
 
-### 11.1. Code Standards
-- TypeScript strict mode
-- ESLint + Prettier configuration
-- Husky git hooks
-- Conventional commits
+## 🚀 Deployment
 
-### 11.2. Branch Strategy
-- `main` - Production releases
-- `develop` - Integration branch
-- `feature/*` - Feature development
-- `hotfix/*` - Critical bug fixes
+The `build` command creates a static bundle in the `dist` directory, ready to be served by any static host (Netlify, Vercel, S3, etc.).
 
-### 11.3. Review Process
-- PR template requirements
-- Code review checklist
-- Automated testing requirement
-- Accessibility review
+1.  **Build the project:**
+    ```bash
+    npm run build
+    ```
 
----
+2.  **Deploy the `dist` folder to your preferred platform.**
 
-## 12. Deployment & DevOps
+3.  **Ensure the following environment variables are set in your production host:**
+    - `VITE_API_BASE_URL` (Points to your live backend API, e.g., `https://api.myapp.com`)
 
-### 12.1. Build Process
-- Next.js standalone output
-- Docker containerization
-- Multi-stage builds
+## 🤔 FAQ
 
-### 12.2. Environment Configuration
-- Environment-specific variables
-- Feature flags system
-- Runtime configuration
+**Q: Why Vite instead of Create React App?**
+**A:** Vite offers significantly faster server start and hot module replacement (HMR), leading to a better development experience.
 
-### 12.3. Monitoring
-- Error tracking (Sentry)
-- Performance monitoring
-- Real user monitoring (RUM)
+**Q: Why two state management libraries?**
+**A:** TanStack Query is perfect for managing asynchronous server state (caching, syncing, updating data from the API). Zustand is a simple, unopinionated library for managing client-side UI state (e.g., is a modal open?).
 
----
-
-## 13. Success Metrics
-
-### 13.1. Performance Metrics
-- Page load time < 2s
-- Time to Interactive < 3s
-- API response time < 500ms
-
-### 13.2. Business Metrics
-- Order processing time reduction
-- Staff training time reduction
-- Error rate reduction
-
-### 13.3. User Satisfaction
-- System Usability Scale (SUS) score > 80
-- Net Promoter Score (NPS) > 50
-- User error rate < 2%
-
----
-
-## 14. Dependencies
-
-### 14.1. Internal Dependencies
-- Backend API availability
-- WebSocket server connectivity
-- Authentication service
-
-### 14.2. External Dependencies
-- Payment service providers
-- Third-party UI libraries
-- Monitoring services
-
----
-
-## 15. Risk Mitigation
-
-### 15.1. Technical Risks
-- **Real-time synchronization failures**
-  - Fallback to polling mechanism
-  - Offline capability implementation
-
-- **Browser compatibility issues**
-  - Progressive enhancement strategy
-  - Cross-browser testing pipeline
-
-- **Performance degradation**
-  - Continuous performance monitoring
-  - Bundle analysis and optimization
-
-### 15.2. Operational Risks
-- **Staff training requirements**
-  - In-app guidance and tutorials
-  - Comprehensive documentation
-
-- **System adoption resistance**
-  - User feedback incorporation
-  - Iterative improvement process
-
----
-
-## 16. Appendix
-
-### 16.1. Design System
-- Color palette and typography scale
-- Component design specifications
-- Iconography system
-
-### 16.2. Accessibility Report
-- Screen reader compatibility matrix
-- Keyboard navigation specifications
-- Color contrast validation
-
-### 16.3. Performance Benchmarks
-- Lighthouse score targets
-- Core Web Vitals thresholds
-- Load testing results
-
----
+**Q: How do I add a new page?**
+**A:** 1. Create a new component in `/pages`. 2. Add a new route in `App.tsx`. 3. (Optional) Add a link to the new page in the navigation component.

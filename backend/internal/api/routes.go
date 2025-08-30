@@ -1,13 +1,15 @@
 package api
 
 import (
+	"backend/internal/handlers"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
-func (s *FiberServer) RegisterFiberRoutes() {
+func (a *FiberApi) RegisterFiberRoutes() {
 	// Apply CORS middleware
-	s.App.Use(cors.New(cors.Config{
+	a.App.Use(cors.New(cors.Config{
 		AllowOrigins:     "*",
 		AllowMethods:     "GET,POST,PUT,DELETE,OPTIONS,PATCH",
 		AllowHeaders:     "Accept,Authorization,Content-Type",
@@ -15,14 +17,14 @@ func (s *FiberServer) RegisterFiberRoutes() {
 		MaxAge:           300,
 	}))
 
-	s.App.Get("/", s.HelloWorldHandler)
+	auth := a.Group("/auth")
+	a.RegisterAuthRoutes(auth)
 
 }
 
-func (s *FiberServer) HelloWorldHandler(c *fiber.Ctx) error {
-	resp := fiber.Map{
-		"message": "Hello World",
-	}
-
-	return c.JSON(resp)
+func (a *FiberApi) RegisterAuthRoutes(router fiber.Router) {
+	router.Post("/signup", handlers.SignUp)
+	router.Post("/login", handlers.Login)
+	router.Delete("/logout/:id", handlers.Logout)
+	router.Delete("/verify/:token", handlers.ConsumeMagicLink)
 }

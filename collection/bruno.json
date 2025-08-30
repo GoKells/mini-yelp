@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Micro Yelp",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -14,7 +14,7 @@ import (
 	_ "github.com/joho/godotenv/autoload"
 )
 
-func gracefulShutdown(fiberServer *api.FiberServer, done chan bool) {
+func gracefulShutdown(fiberServer *api.FiberApi, done chan bool) {
 	// Create context that listens for the interrupt signal from the OS.
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()

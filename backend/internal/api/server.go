@@ -4,17 +4,19 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-type FiberServer struct {
+type FiberApi struct {
 	*fiber.App
 }
 
-func New() *FiberServer {
-	server := &FiberServer{
+
+
+func New() *FiberApi {
+	api := &FiberApi{
 		App: fiber.New(fiber.Config{
-			ServerHeader: "backend",
-			AppName:      "backend",
+			ServerHeader: "mini-yelp-api",
+			AppName:      "mini-yelp-api",
 		}),
 	}
 
-	return server
+	return api
 }
